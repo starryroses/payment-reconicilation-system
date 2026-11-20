@@ -76,13 +76,16 @@ For each payout, the reconciler compares expected per-transaction fees with the 
 
 ## Deploy on Render
 
-Create a **Python Web Service** connected to the repository and configure:
+The repository includes a Render Blueprint in `render.yaml` and a `.python-version` file selecting Python 3.11. To create the service, push both files to the repository, then in Render choose **New → Blueprint** and connect that GitHub repository. Render reads these settings from the Blueprint:
 
 | Setting | Value |
 | --- | --- |
-| Runtime | Python 3.11 or newer |
+| Runtime | Python |
+| Plan | Free |
+| Python version | 3.11 |
 | Build command | `pip install -r requirements.txt` |
 | Start command | `uvicorn app.main:app --host 0.0.0.0 --port $PORT` |
+| Health check | `/api/report` |
 
 Render requires web services to bind to `0.0.0.0` and recommends the port in `PORT`. Its free web services have an ephemeral filesystem, so include the generated files under `data/` in the deployed repository and keep the app read-only at runtime. Free services can spin down when idle; the next request may wait for the service to start. See [Render's FastAPI deployment guide](https://render.com/docs/deploy-fastapi) and [free instance details](https://render.com/docs/free).
 
