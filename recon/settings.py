@@ -1,0 +1,17 @@
+"""Shared project constants. Keep logic out of this module."""
+
+from datetime import date, time
+
+
+FEE_PERCENT = 2
+PERCENT_DENOMINATOR = 100
+SETTLEMENT_CUTOFF = time(18, 0)
+
+PERIOD_START = date(2026, 10, 1)
+PERIOD_END = date(2026, 10, 31)
+LEDGER_START = date(2026, 9, 24)
+
+DEFAULT_SEED = 202610
+OCTOBER_PAYMENT_COUNT = 1_000
+LATE_SEPTEMBER_PAYMENT_COUNT = 100
+REFUND_RATE_PERCENT = 5
